@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lammermoor</title>
+    <meta name="author" content="Ashley Pak" />
+    <meta
+      name="description"
+      content="I'm a Python developer with two years of experience."
+    />
+    <link href="/css/main.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+  </head>
+  <body>
+    <div class="container py-3">
+      <main>
+        <a href="./index.html#project-card" class="btn btn-primary fade-in">Back</a>
+        <div class="card card-default my-3 fade-in">
+          <img
+            src="./img/lm/lm_index.png"
+            alt="Lammermoor front page"
+            class="img-fluid"
+          />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h1 class="card-title">E-Commerce Site (Lammermoor)</h1>
+              <div class="d-flex">
+                <a
+                  href="http://ec2-13-42-39-255.eu-west-2.compute.amazonaws.com"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="primary"
+                    class="bi bi-box-arrow-up-right mx-4"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                    />
+                  </svg>
+                </a>
+                <a href="https://github.com/ashuuuriii/lammermoor">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                    width="30"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="card-text">
+              <p class="lead">About</p>
+              <p>
+                This project is a full stack e-commerce store for a fictional
+                online retailer which sells clothing patterns as physical
+                products and digital downloads. It features an authentication
+                system which allows logged-in users to place orders, view order
+                status, and manage account settings. There is an address book
+                feature which allows users to save shipping addresses to reuse.
+                The application is Dockerised and deployed on EC2. (<a
+                  href="http://ec2-13-42-39-255.eu-west-2.compute.amazonaws.com/api/schema/redoc"
+                  >API Schema</a
+                >)
+              </p>
+
+              <p class="fw-bold">Django REST Framework + ReactJS</p>
+              <p>
+                Django is used to serve model and view logic as a REST API with
+                the React front end consuming the JSON responses and providing
+                the template. Axios is used to make requests to the Django
+                endpoints and Redux is used for state management.
+              </p>
+              <p class="fw-bold">User Authentication</p>
+              <p>
+                JSON Web Tokens (JWT) stored in local storage are used for user
+                authentication. Local storage is accessible to any JavaScript
+                code running on the same domain thus exposing the application to
+                XSS attacks. Alternative implementations include storing JWTs as
+                cookies and using a CSRF token or SameSite cookies. Django Rest
+                Password Reset is used to provide and verify password reset
+                tokens.
+              </p>
+              <p class="fw-bold">Stripe Integration</p>
+              <p>
+                A Stripe custom payment flow is integrated into this project.
+                Stripe payment hooks are used to trigger order confirmation
+                emails, update stock levels, and dispatch digital orders. The
+                current implementation does not sufficiently guard against any
+                errors occurring in the functions called after a hook has been
+                triggered. Although Stripe does log payment events, a
+                notification and logging system should be set up for the web
+                hooks too.
+              </p>
+              <p class="fw-bold">Task Queue</p>
+              <p>
+                Celery is used to send emails asynchronously with Redis as the
+                broker. While it has not been implemented in this project, there
+                is potential to use Celery to run a recommender system. Celery
+                tasks are used to send emails and update the database
+                conditionally in the Stripe webhook to prevent a timeout.
+              </p>
+              <p class="lead">Deployment Architecture</p>
+              <div class="text-center">
+                <img
+                  src="./img/lm/lammermoor-deploy.png"
+                  alt="aws deployment diagram"
+                  class="img-fluid my-3"
+                />
+              </div>
+              <p>
+                There is a single deployment for the front end and back end. The
+                React files are bundled and served via Django views as static
+                files. The application is served from a single domain. This
+                allows for tighter integration and makes deployment simpler
+                without extra cross domain configuration. An alternative
+                implementation is to serve the front end with a CDN service such
+                as CloudFront which would allow an admin panel to be deployed as
+                a separate application if implementing in the future.
+              </p>
+              <p class="lead">Database Schema</p>
+              <div class="text-center">
+                <img
+                  src="./img/lm/lm_models.png"
+                  alt="Lammermoor UML class diagram"
+                  class="img-fluid my-3"
+                />
+              </div>
+              <p>
+                This project utilises the Django ORM’s decimal field to store
+                prices which can be vulnerable to floating point errors. The
+                decimal module is used when writing to the database. An
+                improvement would be to store prices as integers with a currency
+                type to determine the number of decimal places. Alternatively,
+                prices could be stored as strings.
+              </p>
+              <p class="lead">Technologies Used</p>
+              <div class="d-flex flex-wrap">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                  width="50"
+                  class="mx-3 my-2"
+                />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  width="50"
+                  class="mx-3 my-2"
+                />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
+                  width="50"
+                  class="mx-3 my-2"
+                />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg"
+                  width="50"
+                  class="mx-3 my-2"
+                />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                  width="50"
+                  class="mx-3 my-2"
+                />
+              </div>
+              <p class="lead">Gallery</p>
+              <div class="row">
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_about.png"
+                    alt="Lammermoor About page"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_order.png"
+                    alt="Lammermoor Order page"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_order_confirm.png"
+                    alt="Lammermoor Order Confirm page"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_orders_list.png"
+                    alt="Lammermoor Orders List page"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_store.png"
+                    alt="Lammermoor Store page"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-lg-6 my-2">
+                  <img
+                    src="./img/lm/lm_review.png"
+                    alt="Lammermoor review function"
+                    class="img-fluid"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Roly-Polly</title>
+    <meta name="author" content="Ashley Pak" />
+    <meta
+      name="description"
+      content="I'm a Python developer with two years of experience."
+    />
+    <link href="/css/main.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
+    />
+  </head>
+  <body>
+    <div class="container py-3">
+      <main>
+        <a href="./index.html#project-card" class="btn btn-primary fade-in">Back</a>
+        <div class="card card-default my-3 fade-in">
+          <img
+            src="./img/rp/rp_index.png"
+            class="img-fluid"
+            alt="RolyPolly index page"
+          />
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <h1 class="card-title">Event Scheduling App (Roly-Polly)</h1>
+              <div class="d-flex">
+                <a href="https://rolypolly.fly.dev">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="30"
+                    height="30"
+                    fill="primary"
+                    class="bi bi-box-arrow-up-right mx-4"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"
+                    />
+                  </svg>
+                </a>
+                <a href="https://github.com/ashuuuriii/Roly-Polly">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                    width="30"
+                  />
+                </a>
+              </div>
+            </div>
+            <p class="lead">About</p>
+            <p>
+              This project is a full stack event scheduling polling application.
+              It features an authentication system which allows users to manage
+              and edit their events. Event creators can also create events
+              anonymously if they do not wish to create an account. Each event
+              created generates a shareable voting link which can optionally be
+              password protected.
+            </p>
+            <p class="fw-bold">Django</p>
+            <p>
+              This project uses Django for both the front end and the back end.
+            </p>
+            <p class="fw-bold">Shareable Password Protected Links</p>
+            <p>
+              Each event generates a shareable voting link. UUIDs are used in
+              the URL to identify each event to prevent users from finding
+              events by sequentially testing integers. Polls can optionally be
+              password protection. The password protection function has been
+              implemented with sessions to allow anonymous users to log into
+              specific pages.
+            </p>
+            <p class="fw-bold">Asynchronous Emails</p>
+            <p>
+              The first implementation of this application used Celery to send
+              emails asynchronously with Redis as the broker. The deployed
+              application on Fly uses Python’s built-in threading module instead
+              of Celery. Task scheduling is not used. Using the threading module
+              instead of Celery allows for a simpler deployment without the need
+              to define other services.
+            </p>
+            <p class="lead">Deployment Architecture</p>
+            <div class="text-center">
+              <img
+                src="./img/rp/rp_deploy.png"
+                alt="Roly-Polly deployment diagram"
+                class="img-fluid my-3"
+              />
+            </div>
+            <p>This application is deployed on Fly.io as a Docker container.</p>
+            <p class="lead">Database Schema</p>
+            <div class="text-center">
+              <img
+                src="./img/rp/rp_models.png"
+                alt="Roly-Polly UML class diagram"
+                class="img-fluid my-3"
+              />
+            </div>
+            <p>
+              AttendeeChoice represents a many-to-many relation. It has been
+              implemented with foreign keys to allow the “status” field to be
+              added. Each voter can vote for multiple choices and each choice
+              has multiple voters.
+            </p>
+            <p class="lead">Technologies Used</p>
+            <div class="d-flex flex-wrap">
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"
+                width="50"
+                class="mx-3 my-2"
+              />
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
+                width="50"
+                class="mx-3 my-2"
+              />
+            </div>
+            <p class="lead">Gallery</p>
+            <div class="row">
+              <div class="col-lg-6 my-2">
+                <img
+                  src="./img/rp/rp_vote.png"
+                  alt="Roly-Polly Vote page"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-lg-6 my-2">
+                <img
+                  src="./img/rp/rp_dashboard.png"
+                  alt="Roly-Polly Dashboard"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-lg-6 my-2">
+                <img
+                  src="./img/rp/rp_edit.png"
+                  alt="Roly-Polly Edit Event page"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-lg-6 my-2">
+                <img
+                  src="./img/rp/rp_new.png"
+                  alt="Roly-Polly Create Event page"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-lg-6 my-2">
+                <img
+                  src="./img/rp/rp_success.png"
+                  alt="Roly-Polly Event Created"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
